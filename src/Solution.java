@@ -15,7 +15,8 @@ public class Solution {
     }
 
     public static void solutionn(String vvod) {
-        String[] massiv = vvod.split("[+-/*\"]");
+        String newvvod =vvod.replace("\"\"", "\" \"");
+        String[] massiv = newvvod.split("[+-/*\"]");
         String ms0 = massiv[0];
         if (!ms0.equals("")) {
             throw new ArrayIndexOutOfBoundsException("Сначала нужно ввести выражение в скобках");
@@ -23,7 +24,7 @@ public class Solution {
         if (massiv.length == 5) {
             String ms1 = massiv[1];
             String ms4 = massiv[4];
-            if (ms1.length() < 1 || ms1.length() > 10 || ms4.length() < 1 || ms4.length() > 10) {
+            if ( ms1.length() > 10 || ms4.length() > 10) {
                 System.out.println("Выражение должно занимать от 1 до 10 символов");
                 return;
             }
@@ -34,13 +35,16 @@ public class Solution {
             } else {
                 System.out.println(result);
             }
-        } else {
+        } else if (massiv.length==4){
+
+
             String ms1 = massiv[1];
             String ms3 = massiv[3];
-            if (ms1.length() < 1 || ms1.length() > 10 || ms3.length() < 1 || ms3.length() > 10) {
+            if (ms1.length() > 10  || ms3.length() > 10) {
                 System.out.println("Выражение должно занимать от 1 до 10 символов");
                 return;
             }
+
             num = Integer.parseInt(ms3);
             result = Calc.calculated(ms1, num, operation);
             if (result.length() > 40) {
@@ -51,6 +55,9 @@ public class Solution {
             }
 
 
+        }
+        else {
+            System.out.println("Вы ввели неправильное выражение");
         }
     }
 
@@ -70,7 +77,7 @@ public class Solution {
                 default:
                     throw new IllegalArgumentException("Неверный знак операции");
             }
-            return result;
+            return result.trim();
         }
 
         public static String calculated(String world, int numic, char op) {
@@ -96,7 +103,7 @@ public class Solution {
                 default:
                     throw new IllegalArgumentException("Не верный знак операции");
             }
-            return result;
+            return result.trim();
         }
     }
 

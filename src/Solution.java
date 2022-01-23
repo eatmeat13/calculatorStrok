@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Solution {
@@ -64,11 +65,8 @@ public class Solution {
                     result = world1.replace(world2, "");
                     break;
                 case '*':
-                    System.out.println("Неверный знак операции * (введите + или -)");
-                    break;
                 case '/':
-                    System.out.println("Неверный знак операции / (введите + или -)");
-                    break;
+                    throw new NullPointerException("Неверный знак операции, попробуйте + или -");
                 default:
                     throw new IllegalArgumentException("Неверный знак операции");
             }
@@ -76,20 +74,18 @@ public class Solution {
         }
 
         public static String calculated(String world, int numic, char op) {
+            if (numic <1|| numic>10){
+                throw new InputMismatchException("Числа могут быть только от 1 до 10");
+
+            }
             switch (op) {
                 case '+':
-                    System.out.println("Неверный знак операции + (введите * или /)");
-                    break;
                 case '-':
-                    System.out.println("Неверный знак операции - (введите * или /)");
-                    break;
+                    throw new NullPointerException("Неверный знак операции, попробуйте * или /");
                 case '*':
                     result = world.repeat(numic);
                     break;
                 case '/':
-                    if (numic == 0) {
-                        throw new NullPointerException("Делить на ноль нельзя");
-                    }
                     int resB = world.length() / numic;
                     result = world.substring(0, resB);
                     if (world.length() < numic) {

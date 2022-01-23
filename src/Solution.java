@@ -7,7 +7,7 @@ public class Solution {
     static int num;
 
     public static void main(String[] args) {
-        System.out.println("Введите выражение");
+        System.out.println("Введите выражение!");
         String vvod = scanner.nextLine();
         operation = Operat.operative(vvod);
         solutionn(vvod);
